@@ -1,0 +1,29 @@
+{
+  "name": "ngot-mash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.ts",
+    "dev": "nodemon index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.8.3",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsdom": "^20.0.1",
+    "mongoose": "^6.6.5",
+    "node-fetch": "^2.6.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
