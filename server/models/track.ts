@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
 const trackSchema = new mongoose.Schema({
+  index: Number,
   title: String,
   artist: String,
-  release: [{
+  release: {
     discType: String,
     title: String,
-  }],
+  },
   year: Number,
   duration: String,
   image: String,

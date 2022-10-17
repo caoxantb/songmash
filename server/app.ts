@@ -9,6 +9,7 @@ import { requestLogger, unknownEndpoint, errorHandler } from './utils/middleware
 
 //routers
 import tracksRouter from './controllers/tracks';
+import artistsRouter from './controllers/artists';
 
 const app = express();
 
@@ -26,8 +27,7 @@ app.use(express.json());
 app.use(requestLogger);
 
 app.use("/api/tracks", tracksRouter);
-// app.use("/api/lists", listsRouter);
-// app.use("/api/tasks", tasksRouter);
+app.use("/api/artists", artistsRouter);
 
 app.use(unknownEndpoint);
 app.use(errorHandler);

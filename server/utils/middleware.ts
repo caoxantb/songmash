@@ -1,5 +1,6 @@
 import jsdom from "jsdom";
 import fetch from "node-fetch";
+import Artist from "../models/artist";
 
 // config and error handling
 const requestLogger = (request, response, next) => {
@@ -19,11 +20,8 @@ const errorHandler = (error, request, response, next) => {
   next(error);
 };
 
-const artistPlaylistUrl = {
-  ngot: "https://open.spotify.com/playlist/1T35763llI8RIDYDbmtrlf",
-};
-
 const fetchSpotify = async (url: string) => {
+  console.log(url)
   const fetchResponse = await fetch(url);
   const html = await fetchResponse.text();
   const parsedHTML = new jsdom.JSDOM(html);
@@ -31,10 +29,11 @@ const fetchSpotify = async (url: string) => {
 };
 
 const scrapeTracksFromSpotify = async (req, res, next) => {
-  const { artist, trackIndex } = req.params;
-  const playlistHTML = await fetchSpotify(artistPlaylistUrl[artist]);
+  const { artistRef, index } = req.params;
+  const artist: any = await Artist.findOne({nameRef: artistRef})
+  const playlistHTML = await fetchSpotify(artist.playlistURL);
   const trackHTML =
-    playlistHTML.window.document.querySelectorAll('[type="track"]')[trackIndex - 1];
+    playlistHTML.window.document.querySelectorAll('[type="track"]')[index - 1];
   const trackData = trackHTML.querySelector("a");
   const trackTitle = trackData.textContent;
   const trackSrc = trackData.href;
@@ -52,6 +51,7 @@ const scrapeTracksFromSpotify = async (req, res, next) => {
   const trackReleaseType = trackRelease.querySelector('span').textContent
   const trackReleaseTitle = trackRelease.querySelector('a').textContent
   const track = {
+    index: index,
     title: trackTitle,
     artist: artistName,
     release: {

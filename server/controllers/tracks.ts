@@ -1,21 +1,19 @@
 import express from "express";
 import Track from "../models/track";
+import Artist from "../models/artist";
 import { scrapeTracksFromSpotify } from "../utils/middleware";
 
 const tracksRouter = express.Router();
 
-const trans = {
-  ngot: "Ngọt",
-};
-
-tracksRouter.get("/:artist", async (req, res) => {
-  const { artist } = req.params;
-  const tracks = await Track.find({ artist: trans[artist] });
+tracksRouter.get("/:artistRef", async (req, res) => {
+  const { artistRef } = req.params;
+  const artist: any = await Artist.find({nameRef: artistRef})
+  const tracks = await Track.find({ artist: artist.name });
   res.json(tracks);
 });
 
 tracksRouter.post(
-  "/:artist/:trackIndex",
+  "/:artistRef/:index",
   scrapeTracksFromSpotify,
   async (req, res) => {
     const trackToPost = res.track;
@@ -28,7 +26,7 @@ tracksRouter.put("/:id", async (req, res) => {
   const {
     body,
     params: { id },
-  } = req.params;
+  } = req;
 
   const updatedTrack = await Track.findByIdAndUpdate(id, {
     points: body.points,
