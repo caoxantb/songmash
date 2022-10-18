@@ -8,7 +8,6 @@ specifiers:
   '@types/react': ^18.0.21
   '@typescript-eslint/eslint-plugin': 5.40.0
   '@typescript-eslint/parser': 5.40.0
-  config: link:@types/vite/config
   eslint: 8.25.0
   eslint-plugin-qwik: 0.11.1
   node-fetch: 3.2.10
@@ -25,7 +24,6 @@ devDependencies:
   '@types/react': 18.0.21
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
   '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
-  config: link:@types/vite/config
   eslint: 8.25.0
   eslint-plugin-qwik: 0.11.1_eslint@8.25.0
   node-fetch: 3.2.10
