@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export interface IArtist extends mongoose.Document {
+export interface IArtist extends Document {
   name: String,
   nameRef: String,
   playlistURL: String,
@@ -20,6 +20,6 @@ const artistSchema = new mongoose.Schema<IArtist>({
   description: String,
 });
 
-const Artist = mongoose.model('Artist', artistSchema);
+const Artist = mongoose.model<IArtist>('Artist', artistSchema);
 
 export default Artist;
