@@ -5,34 +5,40 @@ import { scrapeTracksFromSpotify } from "../utils/middleware";
 
 const tracksRouter = express.Router();
 
-tracksRouter.get("/:artistRef", async (req, res) => {
-  const { artistRef } = req.params;
-  const artist: any = await Artist.find({nameRef: artistRef})
-  const tracks = await Track.find({ artist: artist.name });
-  res.json(tracks);
-});
+tracksRouter.get(
+  "/:artistRef",
+  async (req: express.Request, res: express.Response) => {
+    const { artistRef } = req.params;
+    const artist = await Artist.findOne({ nameRef: artistRef });
+    const tracks = await Track.find({ artist: artist["name"] });
+    res.json(tracks);
+  }
+);
 
 tracksRouter.post(
   "/:artistRef/:index",
   scrapeTracksFromSpotify,
-  async (req, res) => {
+  async (_req: express.Request, res: express.Response) => {
     const trackToPost = res.track;
     const trackCreated = await Track.create({ ...trackToPost });
     res.status(201).json(trackCreated);
   }
 );
 
-tracksRouter.put("/:id", async (req, res) => {
-  const {
-    body,
-    params: { id },
-  } = req;
+tracksRouter.put(
+  "/:id",
+  async (req: express.Request, res: express.Response) => {
+    const {
+      body,
+      params: { id },
+    } = req;
 
-  const updatedTrack = await Track.findByIdAndUpdate(id, {
-    points: body.points,
-  });
+    const updatedTrack = await Track.findByIdAndUpdate(id, {
+      points: body.points,
+    });
 
-  res.json(updatedTrack);
-});
+    res.json(updatedTrack);
+  }
+);
 
 export default tracksRouter;
