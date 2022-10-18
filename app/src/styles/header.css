@@ -8,7 +8,7 @@ header {
   display: flex;
 }
 
-.appName {
+.app-name {
   margin-left: 10px;
   font-size: 24px;
   font-weight: 800;
