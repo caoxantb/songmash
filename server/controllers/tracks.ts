@@ -9,7 +9,7 @@ tracksRouter.get(
   "/:artistRef",
   async (req: express.Request, res: express.Response) => {
     const { artistRef } = req.params;
-    const artist = await Artist.find({ nameRef: artistRef });
+    const artist = await Artist.findOne({ nameRef: artistRef });
     const tracks = await Track.find({ artist: artist["name"] });
     res.json(tracks);
   }
