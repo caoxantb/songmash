@@ -1,10 +1,9 @@
 import express from "express";
-import Track from "../models/track";
 import Artist from "../models/artist";
 
 const artistsRouter = express.Router();
 
-artistsRouter.post("/", async (req, res) => {
+artistsRouter.post("/", async (req: express.Request, res: express.Response) => {
   const { body } = req;
   const artistCreated = await Artist.create({ ...body });
   res.status(201).json(artistCreated);
