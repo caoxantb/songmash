@@ -58,23 +58,54 @@
 }
 
 .artist-bio-name {
-    font-size: 50px;
-    font-weight: 700;
-    margin: 0 0 20px 0;
+  font-size: 50px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
 }
 
-.artist-bio-active-years{
-    font-style: italic;
-    color: #888888;
-    margin: 0 0 20px 0;
+.artist-bio-active-years {
+  font-style: italic;
+  color: #888888;
+  margin: 0 0 20px 0;
 }
 
 .artist-members {
-    font-weight: 500;
-    margin: 0 0 40px 0;
+  font-weight: 500;
+  margin: 0 0 40px 0;
 }
 
 .artist-desc {
-    line-height: 40px;
-    font-weight: 100;
+  line-height: 40px;
+  font-weight: 100;
+}
+
+.artist-songmash {
+  text-align: center;
+  margin: 0 10% 80px;
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+}
+
+.artist-song-card {
+  padding: 0 5%;
+  border: 4px solid rgb(2, 2, 2);
+  border-radius: 2%;
+}
+
+.artist-song-name {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.artist-song-card img {
+  padding: 5% 0 0 0;
+  width: 100%;
+}
+
+.versus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  font-weight: 700;
 }

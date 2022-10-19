@@ -1,6 +1,7 @@
 import { component$, useStyles$ } from "@builder.io/qwik";
 import ArtistStyles from "~/styles/artist.css";
-import ArtistBio from "./artist-bio";
+import ArtistSongMash from "./artist-songmash";
+// import ArtistBio from "./artist-bio";
 import ArtistToggler from "./artist-toggler";
 
 const ArtistPage = component$(() => {
@@ -12,7 +13,8 @@ const ArtistPage = component$(() => {
         <p className="artist-main-title">CÁ HỒI HOANG</p>
       </div>
       <ArtistToggler />
-      <ArtistBio />
+      {/* <ArtistBio /> */}
+      <ArtistSongMash />
     </div>
   );
 });
