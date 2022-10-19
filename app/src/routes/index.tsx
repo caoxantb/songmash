@@ -4,9 +4,9 @@ import Home from "~/components/homepage/home";
 
 export default component$(() => {
   return (
-    <div>
+    <>
       <Home />
-    </div>
+    </>
   );
 });
 

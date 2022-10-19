@@ -1,0 +1,80 @@
+.artist-banner {
+  text-align: center;
+  display: flex;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://i.imgur.com/sY3wJLt.jpg") no-repeat center center fixed;
+  /* Full height */
+  height: 100vh;
+  /* Center and scale the image nicely */
+  background-size: cover;
+  color: whitesmoke;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.artist-main-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 100px;
+  letter-spacing: 2px;
+}
+
+.artist-toggler {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px;
+  margin: 0 10% 80px;
+}
+
+.artist-toggle-section {
+  border-bottom: 1px solid rgb(219, 207, 207);
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  font-weight: 100;
+  box-shadow: 1px #888888;
+}
+
+.active {
+  font-weight: 700;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.artist-bio {
+  margin: 0 10%;
+}
+
+.artist-ava {
+  padding: 0 2%;
+  float: left;
+  width: 36%;
+}
+
+.artist-ava img {
+  width: 96%;
+  border-radius: 50%;
+  display: block;
+}
+
+.artist-bio-name {
+    font-size: 50px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+.artist-bio-active-years{
+    font-style: italic;
+    color: #888888;
+    margin: 0 0 20px 0;
+}
+
+.artist-members {
+    font-weight: 500;
+    margin: 0 0 40px 0;
+}
+
+.artist-desc {
+    line-height: 40px;
+    font-weight: 100;
+}
