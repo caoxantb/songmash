@@ -18,7 +18,10 @@ yarn.lock
 *.log
 
 # Package files
-*.jar
+*.jars
+
+# Env
+.env
 
 # Maven
 target/
