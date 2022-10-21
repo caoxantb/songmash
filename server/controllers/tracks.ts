@@ -15,6 +15,15 @@ tracksRouter.get(
   }
 );
 
+tracksRouter.get(
+  "/:id",
+  async (req: express.Request, res: express.Response) => {
+    const { id } = req.params;
+    const track = await Track.findById(id);
+    res.json(track);
+  }
+);
+
 tracksRouter.post(
   "/:artistRef/:index",
   scrapeTracksFromSpotify,

@@ -20,6 +20,9 @@ yarn.lock
 # Package files
 *.jar
 
+# Env
+.env
+
 # Maven
 target/
 dist/
