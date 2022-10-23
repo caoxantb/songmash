@@ -1,12 +1,19 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
+import { ArtistsContext } from "./artists-grid";
 
 const ArtistsCard = component$(() => {
-  return (
-    <div className="artist-card">
-      <img src="https://i.imgur.com/e6C8rtD.jpg" alt="" />
-      <div className="artist-card-name">CÁ HỒI HOANG</div>
-    </div>
-  );
+  const store: any = useContext(ArtistsContext);
+
+  return store.artists.map((artist: any) => {
+    return (
+      <a href={`/${artist.nameRef}`}>
+        <div className="artist-card">
+          <img src={artist.avatarImg} alt="" />
+          <p className="artist-card-name">{artist.name.toUpperCase()}</p>
+        </div>
+      </a>
+    );
+  });
 });
 
 export default ArtistsCard;

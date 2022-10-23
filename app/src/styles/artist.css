@@ -26,6 +26,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0px;
   margin: 0 10% 80px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .artist-toggle-section {

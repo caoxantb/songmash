@@ -7,8 +7,10 @@ const Header = component$(() => {
 
   return (
     <header>
-      <Icon />
-      <div className="app-name"> SONGMASH </div>
+      <a href="/">
+        <Icon />
+        <span className="app-name"> SONGMASH </span>
+      </a>
     </header>
   );
 });

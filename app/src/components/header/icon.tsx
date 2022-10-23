@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 
 const Icon = component$(() => {
   return (
-    <>
+    <span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
@@ -25,7 +25,7 @@ const Icon = component$(() => {
           </g>
         </g>
       </svg>
-    </>
+    </span>
   );
 });
 

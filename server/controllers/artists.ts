@@ -8,6 +8,15 @@ artistsRouter.get("/", async (req: express.Request, res: express.Response) => {
   res.json(artists);
 });
 
+artistsRouter.get(
+  "/:nameRef",
+  async (req: express.Request, res: express.Response) => {
+    const { nameRef } = req.params;
+    const artist = await Artist.findOne({ nameRef: nameRef });
+    res.json(artist);
+  }
+);
+
 artistsRouter.post("/", async (req: express.Request, res: express.Response) => {
   const { body } = req;
   const artistCreated = await Artist.create({ ...body });
