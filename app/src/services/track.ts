@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const trackAPI = "http://localhost:3001/api/tracks";
+const trackAPI = "http://localhost:8500/api/tracks";
 
 const getAllTracksByArtist = async (artistRef: String) => {
   const res = await axios.get(`${trackAPI}/${artistRef}`);
@@ -8,12 +8,13 @@ const getAllTracksByArtist = async (artistRef: String) => {
 };
 
 const getTrackById = async (id: String) => {
-  const res = await axios.get(`${trackAPI}/${id}`);
+  const res = await axios.get(`${trackAPI}/${id}`, {});
   return res.data;
 };
 
-const updateTrackPoints = async (id: String) => {
-  const res = await axios.put(`${trackAPI}/${id}`);
+const updateTrackPoints = async (id: String, newPoint: Number) => {
+  const res = await axios.put(`${trackAPI}/${id}`, {points: newPoint});
+  console.log(res.data)
   return res.data;
 };
 

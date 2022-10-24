@@ -103,6 +103,7 @@
 }
 
 .artist-song-name {
+  margin-top: 20px;
   font-weight: 700;
   font-size: 24px;
 }
@@ -126,7 +127,7 @@
 
 .artist-row {
   display: grid;
-  grid-template-columns: 3% 3% 45% 10% 14% 15% 10%;
+  grid-template-columns: 3% 3% 40% 10% 14% 25% 5%;
   box-sizing: border-box;
   border: 1px solid rgb(2, 2, 2);
   padding: 5px 10px;
@@ -147,4 +148,8 @@
   justify-content: left;
   align-items: center;
   padding: 0 5%;
+}
+
+.track-rankings-img img{
+  width: 100%;
 }

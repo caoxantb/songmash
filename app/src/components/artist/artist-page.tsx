@@ -44,7 +44,7 @@ const ArtistPage = component$(() => {
       ) : store.toggle === "songmash" ? (
         <ArtistSongMash artist={store.artist} />
       ) : (
-        <ArtistRankings />
+        <ArtistRankings artist={store.artist} toggle={store.toggle}/>
       )}
     </div>
   );

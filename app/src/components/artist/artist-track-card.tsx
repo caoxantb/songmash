@@ -1,25 +1,27 @@
 import { component$ } from "@builder.io/qwik";
 
-const ArtistTrackCard = component$(() => {
+const ArtistTrackCard = component$(({ track, clickHandler }) => {
   return (
-    <div className="artist-song-card">
-      <img
-        src="https://i.scdn.co/image/ab67616d0000b27356f1ed1ce0ff2f4de19186d3"
-        alt=""
-      />
-      <p className="artist-song-name">Thấy Chưa</p>
+    <div onClick$={clickHandler} className="artist-song-card">
+      <img src={track.image} alt="" />
+      <p className="artist-song-name">{track.title}</p>
       <p>
-        <i>Single • 2022</i>
+        <i>
+          {track.release.discType} • {track.release.title} • {track.year}
+        </i>
       </p>
       <iframe
         style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/4CjJf5bzvv5ZuLf2FJqlWY?utm_source=generator"
+        src={`${track.src.replace(
+          "/track",
+          "/embed/track"
+        )}?utm_source=generator`}
         width="100%"
         height="100"
         frameBorder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        allow="autoplay; clipboard-write; encrypted-media;"
         loading="lazy"
-      ></iframe>
+      />
     </div>
   );
 });

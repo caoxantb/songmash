@@ -10,7 +10,7 @@ tracksRouter.get(
   async (req: express.Request, res: express.Response) => {
     const { artistRef } = req.params;
     const artist = await Artist.findOne({ nameRef: artistRef });
-    const tracks = await Track.find({ artist: artist["name"] });
+    const tracks = await Track.find({ artist: artist.name });
     res.json(tracks);
   }
 );
@@ -49,5 +49,12 @@ tracksRouter.put(
     res.json(updatedTrack);
   }
 );
+
+tracksRouter.put("/artist/:artistRef", async (req: express.Request, res: express.Response) => {
+  const {artistRef} = req.params;
+  const artist = await Artist.findOne({ nameRef: artistRef });
+  const updatedTrack = await Track.updateMany({artist: artist.name}, {points: 1400})
+  res.json(updatedTrack)
+})
 
 export default tracksRouter;
