@@ -1,5 +1,20 @@
 import mongoose from "mongoose";
 
+export interface ITrack extends Document {
+  index: Number,
+  title: string,
+  artist: string,
+  release: {
+    discType: string,
+    title: string,
+  },
+  year: number,
+  duration: string,
+  image: string,
+  src: string,
+  points: Number,
+}
+
 const trackSchema = new mongoose.Schema({
   index: Number,
   title: String,
@@ -15,6 +30,6 @@ const trackSchema = new mongoose.Schema({
   points: Number,
 });
 
-const Track = mongoose.model('Track', trackSchema);
+const Track = mongoose.model<ITrack>('Track', trackSchema);
 
 export default Track;

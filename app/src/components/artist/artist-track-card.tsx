@@ -1,18 +1,23 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, QRL } from "@builder.io/qwik";
 
-const ArtistTrackCard = component$(({ track, clickHandler }) => {
+interface ArtistTrackCardProps {
+  track: Track
+  clickHandler: QRL<() => Promise<void>>
+}
+
+const ArtistTrackCard = component$(({ track, clickHandler }: ArtistTrackCardProps) => {
   return (
     <div onClick$={clickHandler} className="artist-song-card">
       <img src={track.image} alt="" />
       <p className="artist-song-name">{track.title}</p>
       <p>
         <i>
-          {track.release.discType} • {track.release.title} • {track.year}
+          {track.release?.discType} • {track.release?.title} • {track.year}
         </i>
       </p>
       <iframe
         style="border-radius:12px"
-        src={`${track.src.replace(
+        src={`${track.src?.replace(
           "/track",
           "/embed/track"
         )}?utm_source=generator`}

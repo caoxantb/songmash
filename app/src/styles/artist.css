@@ -1,16 +1,10 @@
 .artist-banner {
   text-align: center;
   display: flex;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://i.imgur.com/sY3wJLt.jpg") no-repeat center center fixed;
-  /* Full height */
   height: 100vh;
-  /* Center and scale the image nicely */
-  background-size: cover;
   color: whitesmoke;
   justify-content: center;
   align-items: center;
-  margin-bottom: 40px;
 }
 
 .artist-main-title {
@@ -18,6 +12,11 @@
   font-weight: 700;
   font-size: 100px;
   letter-spacing: 2px;
+}
+
+.artist-main-section {
+  padding-top: 50px;
+  padding-bottom: 100px;
 }
 
 .artist-toggler {
@@ -34,7 +33,7 @@
   border-bottom: 1px solid rgb(219, 207, 207);
   padding-bottom: 8px;
   box-sizing: border-box;
-  font-weight: 100;
+  font-weight: 400;
   box-shadow: 1px #888888;
 }
 
@@ -74,11 +73,16 @@
 .artist-members {
   font-weight: 500;
   margin: 0 0 40px 0;
+  line-height: 40px;
 }
 
 .artist-desc {
   line-height: 40px;
-  font-weight: 100;
+  font-weight: 300;
+}
+
+.artist-subdesc {
+  margin-bottom: 8px;
 }
 
 .artist-songmash {

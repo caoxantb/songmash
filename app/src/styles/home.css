@@ -1,6 +1,6 @@
 .home {
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("https://i.imgur.com/sY3wJLt.jpg") no-repeat center center fixed;
   /* Full height */
   height: 100%;

@@ -1,12 +1,15 @@
 import { component$, useStore, useMount$} from "@builder.io/qwik";
-import ArtistRankingRow from "./artist-ranking-row";
-import trackService from "~/services/track"
+import {ArtistRankingRow, ArtistRankingHead} from "./artist-ranking-row";
+import trackService from "~/services/track" 
 
-const ArtistRankings = component$(({ artist, toggle }) => {
-  const store = useStore(
+interface ArtistRankingsStore {
+  artistAllSongs: Tracks
+}
+
+const ArtistRankings = component$(({ artist }: IArtist) => {
+  const store: ArtistRankingsStore = useStore(
     {
       artistAllSongs: [],
-      toggle: toggle
     },
     { recursive: true }
   );
@@ -15,13 +18,13 @@ const ArtistRankings = component$(({ artist, toggle }) => {
     store.artistAllSongs = await trackService.getAllTracksByArtist(
       artist.nameRef
     );
-    store.artistAllSongs = store.artistAllSongs.sort((track1, track2) => track2.points - track1.points)
+    store.artistAllSongs = store.artistAllSongs.sort((track1, track2) => (track2.points || 0) - (track1.points || 0))
     console.log(store.artistAllSongs)
   });
 
   return (
     <div className="artist-rankings">
-      <ArtistRankingRow head={true}/>
+      <ArtistRankingHead/>
       {store.artistAllSongs.map((track, index) => {
         return <ArtistRankingRow track={track} index={index}/>
       })}

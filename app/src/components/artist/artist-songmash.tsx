@@ -9,13 +9,21 @@ import ArtistTrackCard from "./artist-track-card";
 import trackService from "~/services/track";
 import { calcEloRating } from "~/helpers/elo-agorithm";
 
-const ArtistSongMash = component$(({ artist }) => {
-  const store = useStore(
+interface ArtistSongMashStore {
+  indexLeft: number;
+  indexRight: number;
+  trackLeft: Track;
+  trackRight: Track;
+  artistAllSongs: Tracks | Track[];
+}
+
+const ArtistSongMash = component$(({ artist }: IArtist) => {
+  const store: ArtistSongMashStore = useStore(
     {
       indexLeft: 0,
       indexRight: 0,
-      trackLeft: {},
-      trackRight: {},
+      trackLeft: { _id: "" },
+      trackRight: { _id: "" },
       artistAllSongs: [],
     },
     { recursive: true }
@@ -38,22 +46,40 @@ const ArtistSongMash = component$(({ artist }) => {
     const indexRight = track(() => store.indexRight);
     store.trackLeft = store.artistAllSongs.find(
       (track) => track.index === indexLeft
-    );
+    ) || { _id: "" };
     store.trackRight = store.artistAllSongs.find(
       (track) => track.index === indexRight
-    );
+    ) || { _id: "" };
   });
 
   const clickHandler = $(async (winner: String) => {
-    // tinh
-    const [leftPoints, rightPoints] = calcEloRating(store.trackLeft.points, store.trackRight.points, winner)
-    console.log(leftPoints, rightPoints)
-    // update 2 lan
-    const trackLeft = {...await trackService.updateTrackPoints(store.trackLeft._id, leftPoints), points: leftPoints}
-    const trackRight = {...await trackService.updateTrackPoints(store.trackRight._id, rightPoints), points: rightPoints}
-    // update artistAllSongs
-    store.artistAllSongs = store.artistAllSongs.map(track => track.index === store.indexLeft ? trackLeft : track)
-    store.artistAllSongs = store.artistAllSongs.map(track => track.index === store.indexRight ? trackRight : track)
+    const [leftPoints, rightPoints] = calcEloRating(
+      store.trackLeft.points || 0,
+      store.trackRight.points || 0,
+      winner
+    );
+
+    const trackLeft: Track = {
+      ...(await trackService.updateTrackPoints(
+        store.trackLeft._id,
+        leftPoints
+      )),
+      points: leftPoints,
+    };
+    const trackRight: Track = {
+      ...(await trackService.updateTrackPoints(
+        store.trackRight._id,
+        rightPoints
+      )),
+      points: rightPoints,
+    };
+
+    store.artistAllSongs = store.artistAllSongs.map((track) =>
+      track.index === store.indexLeft ? trackLeft : track
+    );
+    store.artistAllSongs = store.artistAllSongs.map((track) =>
+      track.index === store.indexRight ? trackRight : track
+    );
     store.indexLeft =
       Math.floor(Math.random() * store.artistAllSongs.length) + 1;
     do {
@@ -64,9 +90,15 @@ const ArtistSongMash = component$(({ artist }) => {
 
   return (
     <div className="artist-songmash">
-      <ArtistTrackCard track={store.trackLeft} clickHandler={$(() => clickHandler("left"))} />
+      <ArtistTrackCard
+        track={store.trackLeft}
+        clickHandler={$(() => clickHandler("left"))}
+      />
       <div className="versus">vs.</div>
-      <ArtistTrackCard track={store.trackRight} clickHandler={$(() => clickHandler("right"))} />
+      <ArtistTrackCard
+        track={store.trackRight}
+        clickHandler={$(() => clickHandler("right"))}
+      />
     </div>
   );
 });

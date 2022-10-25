@@ -1,7 +1,7 @@
 import jsdom from "jsdom";
 import express from "express";
 import fetch from "node-fetch";
-import Artist from "../models/artist";
+import Artist, { IArtist } from "../models/artist";
 
 // config and error handling
 const requestLogger = (req: express.Request, _res: express.Response, next: express.Next) => {
@@ -31,7 +31,7 @@ const fetchSpotify = async (url: string) => {
 
 const scrapeTracksFromSpotify = async (req: express.Request, res: express.Response, next: express.Next) => {
   const { artistRef, index } = req.params;
-  const artist: any = await Artist.findOne({nameRef: artistRef})
+  const artist: IArtist = await Artist.findOne({nameRef: artistRef})
   const playlistHTML = await fetchSpotify(artist.playlistURL);
   const trackHTML =
     playlistHTML.window.document.querySelectorAll('[type="track"]')[index - 1];

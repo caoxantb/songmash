@@ -13,12 +13,18 @@ import ArtistRankings from "./artist-rankings";
 import ArtistToggler from "./artist-toggler";
 import artistService from "~/services/artist";
 
+interface ArtistPageStore {
+  artist: Artist;
+  toggle: 'biography' | 'songmash' | 'rankings'
+}
+
 const ArtistPage = component$(() => {
   useStyles$(ArtistStyles);
+
   const location = useLocation();
 
-  const store: any = useStore(
-    { artist: {}, toggle: "biography" },
+  const store: ArtistPageStore = useStore(
+    { artist: {nameRef: ''}, toggle: "biography" },
     { recursive: true }
   );
 
@@ -28,6 +34,7 @@ const ArtistPage = component$(() => {
     );
   });
 
+
   const clickHandler = $((e: any) => {
     store.toggle = e.target.id;
     console.log(e.target.id);
@@ -35,17 +42,26 @@ const ArtistPage = component$(() => {
 
   return (
     <div className="artist-page">
-      <div className="artist-banner">
+      <div
+        className="artist-banner"
+        style={{
+          background:
+            `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${store.artist.bannerImg}) no-repeat center center fixed`,
+          backgroundSize: "cover",
+        }}
+      >
         <p className="artist-main-title">{store.artist.name?.toUpperCase()}</p>
       </div>
-      <ArtistToggler clickHandler={clickHandler} toggle={store.toggle} />
-      {store.toggle === "biography" ? (
-        <ArtistBio />
-      ) : store.toggle === "songmash" ? (
-        <ArtistSongMash artist={store.artist} />
-      ) : (
-        <ArtistRankings artist={store.artist} toggle={store.toggle}/>
-      )}
+      <div className="artist-main-section">
+        <ArtistToggler clickHandler={clickHandler} toggle={store.toggle} />
+        {store.toggle === "biography" ? (
+          <ArtistBio artist={store.artist} />
+        ) : store.toggle === "songmash" ? (
+          <ArtistSongMash artist={store.artist} />
+        ) : (
+          <ArtistRankings artist={store.artist} />
+        )}
+      </div>
     </div>
   );
 });

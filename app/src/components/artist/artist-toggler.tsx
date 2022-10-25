@@ -1,6 +1,11 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, QRL} from "@builder.io/qwik";
 
-const ArtistToggler = component$(({ clickHandler, toggle }) => {
+interface ArtistTogglerProps {
+  clickHandler: QRL<(e: any) => void>;
+  toggle: 'biography' | 'songmash' | 'rankings'
+}
+
+const ArtistToggler = component$(({ clickHandler, toggle }: ArtistTogglerProps) => {
   return (
     <div className="artist-toggler">
       <div

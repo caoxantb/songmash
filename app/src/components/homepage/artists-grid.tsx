@@ -5,13 +5,15 @@ import {
   useContextProvider,
   createContext,
 } from "@builder.io/qwik";
-import ArtistsCard from "./artist-card";
+import ArtistCard from "./artist-card";
 import artistService from "~/services/artist";
 
-export const ArtistsContext = createContext("artists-context");
+interface ArtistsGridStore {
+  artists: Artists;
+}
 
 const ArtistsGrid = component$(() => {
-  const store = useStore(
+  const store: ArtistsGridStore = useStore(
     {
       artists: [],
     },
@@ -22,11 +24,13 @@ const ArtistsGrid = component$(() => {
     store.artists = await artistService.getAllArtists();
   });
 
-  useContextProvider(ArtistsContext, store);
-
   return (
     <div className="artists-grid">
-      <ArtistsCard />
+      {store.artists.map((artist) => (
+        <div>
+          <ArtistCard artist={artist} />
+        </div>
+      ))}
     </div>
   );
 });
