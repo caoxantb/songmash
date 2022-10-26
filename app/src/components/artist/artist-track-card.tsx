@@ -2,12 +2,13 @@ import { component$, QRL } from "@builder.io/qwik";
 
 interface ArtistTrackCardProps {
   track: Track
-  clickHandler: QRL<() => Promise<void>>
+  clickHandler: any
+  isVisible: string
 }
 
-const ArtistTrackCard = component$(({ track, clickHandler }: ArtistTrackCardProps) => {
+const ArtistTrackCard = component$(({ track, clickHandler, isVisible }: ArtistTrackCardProps) => {
   return (
-    <div onClick$={clickHandler} className="artist-song-card">
+    <div onClick$={clickHandler} className="artist-song-card" style={{visibility: isVisible}}>
       <img src={track.image} alt="" />
       <p className="artist-song-name">{track.title}</p>
       <p>

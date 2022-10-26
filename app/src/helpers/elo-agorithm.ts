@@ -3,8 +3,8 @@ export const calcEloRating = (
   ratingRight: number,
   winner: String
 ) => {
-  const kFactorLeft = ratingLeft > 2400 ? 32 : ratingLeft < 2100 ? 16 : 24;
-  const kFactorRight = ratingRight > 2400 ? 32 : ratingRight < 2100 ? 16 : 24;
+  const kFactorLeft = ratingLeft > 2400 ? 16 : ratingLeft < 2100 ? 32 : 24;
+  const kFactorRight = ratingRight > 2400 ? 16 : ratingRight < 2100 ? 32 : 24;
 
   const expLeft = 1 / (1 + 10 ** ((ratingRight - ratingLeft) / 400));
   const expRight = 1 / (1 + 10 ** ((ratingLeft - ratingRight) / 400));

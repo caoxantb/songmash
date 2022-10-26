@@ -8,28 +8,15 @@ import {
 import ArtistCard from "./artist-card";
 import artistService from "~/services/artist";
 
-interface ArtistsGridStore {
-  artists: Artists;
+interface ArtistGridProps {
+  artists: Artists
 }
 
-const ArtistsGrid = component$(() => {
-  const store: ArtistsGridStore = useStore(
-    {
-      artists: [],
-    },
-    { recursive: true }
-  );
-
-  useServerMount$(async () => {
-    store.artists = await artistService.getAllArtists();
-  });
-
+const ArtistsGrid = component$(({artists}: ArtistGridProps) => {
   return (
     <div className="artists-grid">
-      {store.artists.map((artist) => (
-        <div>
+      {artists.map((artist) => (
           <ArtistCard artist={artist} />
-        </div>
       ))}
     </div>
   );

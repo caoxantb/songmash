@@ -34,6 +34,9 @@ const ArtistPage = component$(() => {
     );
   });
 
+  if (!store.artist) {
+    return <div>ERROR 404 - PATH NOT FOUND</div>
+  }
 
   const clickHandler = $((e: any) => {
     store.toggle = e.target.id;

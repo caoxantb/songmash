@@ -10,8 +10,10 @@
 .artist-main-title {
   margin: 0;
   font-weight: 700;
-  font-size: 100px;
+  font-size: 65px;
   letter-spacing: 2px;
+  -webkit-hyphens:auto; 
+  hyphens:auto;
 }
 
 .artist-main-section {
@@ -44,12 +46,14 @@
 
 .artist-bio {
   margin: 0 10%;
+  text-align: center;
 }
 
 .artist-ava {
   padding: 0 2%;
   float: left;
-  width: 36%;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .artist-ava img {
@@ -72,7 +76,7 @@
 
 .artist-members {
   font-weight: 500;
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
   line-height: 40px;
 }
 
@@ -87,9 +91,9 @@
 
 .artist-songmash {
   text-align: center;
-  margin: 0 10% 80px;
+  margin: 0 7% 80px;
   display: grid;
-  grid-template-columns: 33% 34% 33%;
+  grid-template-columns: 1fr;
 }
 
 .artist-song-card {
@@ -123,6 +127,7 @@
   align-items: center;
   font-size: 70px;
   font-weight: 700;
+  margin: 20px 0;
 }
 
 .artist-rankings {
@@ -156,4 +161,61 @@
 
 .track-rankings-img img{
   width: 100%;
+}
+
+@media screen and (min-width: 425px) {
+  .artist-main-title {
+    font-size: 90px;
+  }
+
+  .artist-songmash {
+    margin: 0 10% 80px;
+  }
+
+  .versus {
+    margin: 20px 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .artist-main-title {
+    font-size: 100px;
+  }
+
+  .artist-bio {
+    text-align: left;
+  }
+
+  .artist-ava {
+    width: 36%;
+  }
+
+  .artist-song-card {
+    width: 50%;
+  }
+
+  .artist-song-card:nth-last-child(1) {
+    transform: translateX(60%);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .artist-songmash {
+    grid-template-columns: 40% 20% 40%;
+  }
+  .artist-song-card {
+    width: 88%;
+  }
+  .artist-song-card:nth-last-child(1) {
+    transform: translateX(0%);
+  }
+
+  .versus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    font-weight: 700;
+    margin: 0;
+  }
 }
