@@ -4,7 +4,6 @@ import {
   useStore,
   useMount$,
   $,
-  QRL,
 } from "@builder.io/qwik";
 import ArtistTrackCard from "./artist-track-card";
 import trackService from "~/services/track";

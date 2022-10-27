@@ -1,4 +1,4 @@
-import { component$, useStore, useMount$} from "@builder.io/qwik";
+import { component$, useStore, useMount$, useOnWindow} from "@builder.io/qwik";
 import {ArtistRankingRow, ArtistRankingHead} from "./artist-ranking-row";
 import trackService from "~/services/track" 
 
@@ -19,14 +19,13 @@ const ArtistRankings = component$(({ artist }: IArtist) => {
       artist.nameRef
     );
     store.artistAllSongs = store.artistAllSongs.sort((track1, track2) => (track2.points || 0) - (track1.points || 0))
-    console.log(store.artistAllSongs)
   });
-
+  
   return (
     <div className="artist-rankings">
-      <ArtistRankingHead/>
+      <ArtistRankingHead innerWidth={window.innerWidth}/>
       {store.artistAllSongs.map((track, index) => {
-        return <ArtistRankingRow track={track} index={index}/>
+        return <ArtistRankingRow track={track} index={index} innerWidth={window.innerWidth}/>
       })}
     </div>
   );
