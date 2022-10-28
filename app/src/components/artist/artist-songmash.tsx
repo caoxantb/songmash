@@ -58,7 +58,6 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
   const clickHandler = $(async (event: Event, winner: String) => {
     event.stopPropagation();
     const target = event.target as any;
-    console.log(target.localName)
     if (target?.localName !== "iframe") {
       const [leftPoints, rightPoints] = calcEloRating(
         store.trackLeft.points || 0,

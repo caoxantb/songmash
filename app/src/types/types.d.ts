@@ -13,7 +13,7 @@ type Artists = [Artist] | []
 
 type Track = {
   _id: string,
-  index?: Number,
+  index?: number,
   title?: string,
   artist?: string,
   release?: {
