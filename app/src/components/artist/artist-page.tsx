@@ -7,9 +7,9 @@ import {
 } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import ArtistStyles from "~/styles/artist.css";
-import ArtistSongMash from "./artist-songmash";
-import ArtistBio from "./artist-bio";
-import ArtistRankings from "./artist-rankings";
+import ArtistSongMash from "./songmash/artist-songmash";
+import ArtistBio from "./biography/artist-bio";
+import ArtistRankings from "./rankings/artist-rankings";
 import ArtistToggler from "./artist-toggler";
 import artistService from "~/services/artist";
 
