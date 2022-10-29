@@ -1,29 +1,58 @@
 import { component$, QRL } from "@builder.io/qwik";
 import ArtistDurationIcon from "./artist-duration-icon";
+import ArtistSortIcon from "./artist-sort-icon";
 
 interface ArtistRankingProps {
   track: Track;
   index: number;
-  sortHandler: any
+  sortHandler: any;
   innerWidth: number;
+  sortBy: {
+    column: "score" | "track" | "release" | "duration";
+    direction: "asc" | "desc" | "none";
+  };
 }
 
-type ArtistRankingHeadProps = Pick<ArtistRankingProps, "innerWidth" | "sortHandler">;
-type ArtistRankingRowProps = Omit<ArtistRankingProps, "sortHandler">
+type ArtistRankingHeadProps = Pick<
+  ArtistRankingProps,
+  "innerWidth" | "sortHandler" | "sortBy"
+>;
+type ArtistRankingRowProps = Omit<ArtistRankingProps, "sortHandler" | "sortBy">;
 
 export const ArtistRankingHead = component$(
-  ({ innerWidth, sortHandler }: ArtistRankingHeadProps) => {
+  ({ innerWidth, sortHandler, sortBy }: ArtistRankingHeadProps) => {
+    console.log(sortBy);
+
     return (
       <div className="artist-row label">
         <div className="track-rankings track-rankings-no">#</div>
         <div></div>
-        <div onClick$={() => sortHandler("track")} className="track-rankings track-rankings-title">Tracks</div>
-        <div onClick$={() => sortHandler("score")} className="track-rankings track-rankings-score">Score</div>
+        <div onClick$={() => sortHandler("track")} className="track-rankings">
+          Tracks
+          <ArtistSortIcon sortBy={sortBy} type="track" />
+        </div>
+        <div
+          onClick$={() => sortHandler("score")}
+          className="track-rankings track-rankings-score"
+        >
+          Score
+          <ArtistSortIcon sortBy={sortBy} type="score" />
+        </div>
         {innerWidth >= 768 ? (
           <>
-            <div onClick$={() => sortHandler("release")} className="track-rankings track-rankings-album">Release</div>
-            <div onClick$={() => sortHandler("duration")} className="track-rankings track-rankings-duration">
-              <ArtistDurationIcon/>
+            <div
+              onClick$={() => sortHandler("release")}
+              className="track-rankings track-rankings-album"
+            >
+              Release
+              <ArtistSortIcon sortBy={sortBy} type="release" />
+            </div>
+            <div
+              onClick$={() => sortHandler("duration")}
+              className="track-rankings track-rankings-duration"
+            >
+              <ArtistDurationIcon />
+              <ArtistSortIcon sortBy={sortBy} type="duration" />
             </div>
           </>
         ) : (
@@ -40,7 +69,7 @@ export const ArtistRankingRow = component$(
       <div className="artist-row">
         <div className="track-rankings track-rankings-no">{index + 1}</div>
         <div className="track-rankings track-rankings-img">
-          <img src={track.image} alt="" loading="lazy"/>
+          <img src={track.image} alt="" loading="lazy" />
         </div>
         <div className="track-rankings track-rankings-title">
           <div className="track-rankings-song-name">{track.title}</div>

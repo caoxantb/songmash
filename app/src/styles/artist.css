@@ -12,8 +12,8 @@
   font-weight: 700;
   font-size: 65px;
   letter-spacing: 2px;
-  -webkit-hyphens:auto; 
-  hyphens:auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .artist-main-section {
@@ -67,8 +67,8 @@
   font-size: 50px;
   font-weight: 700;
   margin: 0 0 20px 0;
-  -webkit-hyphens:auto; 
-  hyphens:auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .artist-bio-active-years {
@@ -146,13 +146,7 @@
   font-weight: 400;
   height: auto;
   min-height: 40px;
-}
-
-.label {
-  font-weight: 700;
-  border: none;
-  border-bottom: 1px solid rgb(2, 2, 2);
-  text-transform: uppercase;
+  user-select: none;
 }
 
 .track-rankings {
@@ -162,16 +156,25 @@
   padding: 0 5%;
 }
 
-.track-rankings-song-name, .track-rankings-no {
+.label {
+  font-weight: 700;
+  border: none;
+  border-bottom: 1px solid rgb(2, 2, 2);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.track-rankings-song-name,
+.track-rankings-no {
   font-weight: 700;
 }
 
-.track-rankings-title{
+.track-rankings-title {
   display: grid;
   grid-template-columns: 1fr;
 }
 
-.track-rankings-img img{
+.track-rankings-img img {
   width: 100%;
 }
 
@@ -219,7 +222,6 @@
     transform: translateX(60%);
   }
 
-
   .artist-row {
     grid-template-columns: 3% 7% 45% 10% 30% 5%;
   }
@@ -251,5 +253,4 @@
 }
 
 @media screen and (min-width: 1280px) {
-
 }
