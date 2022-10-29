@@ -1,7 +1,7 @@
 export const calcEloRating = (
   ratingLeft: number,
   ratingRight: number,
-  winner: String
+  winner: string
 ) => {
   const kFactorLeft = ratingLeft > 2400 ? 16 : ratingLeft < 2100 ? 32 : 24;
   const kFactorRight = ratingRight > 2400 ? 16 : ratingRight < 2100 ? 32 : 24;

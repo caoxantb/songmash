@@ -9,6 +9,8 @@ import ArtistTrackCard from "./artist-track-card";
 import trackService from "~/services/track";
 import { calcEloRating } from "~/helpers/elo-agorithm";
 import ArtistLoadingIcon from "./artist-loading-icon";
+import { randomizeSongs } from "~/helpers/random-song";
+import mashService from '~/services/mash';
 
 interface ArtistSongMashStore {
   indexLeft: number;
@@ -36,12 +38,7 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
     store.artistAllSongs = await trackService.getAllTracksByArtist(
       artist.nameRef
     );
-    store.indexLeft =
-      Math.floor(Math.random() * store.artistAllSongs.length) + 1;
-    do {
-      store.indexRight =
-        Math.floor(Math.random() * store.artistAllSongs.length) + 1;
-    } while (store.indexLeft === store.indexRight);
+    [store.indexLeft, store.indexRight] = randomizeSongs(store.artistAllSongs.length)
   });
 
   useWatch$(async ({ track }) => {
@@ -55,7 +52,7 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
     ) || { _id: "" };
   });
 
-  const clickHandler = $(async (event: Event, winner: String) => {
+  const clickHandler = $(async (event: Event, winner: string) => {
     event.stopPropagation();
     const target = event.target as any;
     if (target?.localName !== "iframe") {
@@ -64,6 +61,8 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
         store.trackRight.points || 0,
         winner
       );
+
+      console.log([leftPoints, rightPoints])
 
       const trackLeft: Track = {
         ...(await trackService.updateTrackPoints(
@@ -86,12 +85,10 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
       store.artistAllSongs = store.artistAllSongs.map((track) =>
         track.index === store.indexRight ? trackRight : track
       );
-      store.indexLeft =
-        Math.floor(Math.random() * store.artistAllSongs.length) + 1;
-      do {
-        store.indexRight =
-          Math.floor(Math.random() * store.artistAllSongs.length) + 1;
-      } while (store.indexLeft === store.indexRight);
+
+      await mashService.updateMash(artist.nameRef, [store.trackLeft.index || 0, store.trackRight.index || 0], winner)
+
+      ;[store.indexLeft, store.indexRight] = randomizeSongs(store.artistAllSongs.length)
 
       store.isLoading = true;
 

@@ -32,3 +32,10 @@ type Tracks = [Track] | []
 interface IArtist {
   artist: Artist
 }
+
+type Mash = {
+  indexes: [Number];
+  artistRef: String;
+  leftWin: Number;
+  rightWin: Number;
+}

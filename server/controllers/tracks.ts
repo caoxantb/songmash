@@ -2,6 +2,7 @@ import express from "express";
 import Track from "../models/track";
 import Artist from "../models/artist";
 import { scrapeTracksFromSpotify } from "../utils/middleware";
+import Mash from "../models/mash";
 
 const tracksRouter = express.Router();
 
@@ -54,6 +55,7 @@ tracksRouter.put("/artist/:artistRef", async (req: express.Request, res: express
   const {artistRef} = req.params;
   const artist = await Artist.findOne({ nameRef: artistRef });
   const updatedTrack = await Track.updateMany({artist: artist.name}, {points: 1400})
+  await Mash.deleteMany({artist: artistRef})
   res.json(updatedTrack)
 })
 
