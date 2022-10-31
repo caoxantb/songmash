@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const mashAPI = "/api/mashes";
+const mashAPI = `${import.meta.env.VITE_SERVER_URL}/api/mashes`;
 
 const updateMash = async (
   artist: string,

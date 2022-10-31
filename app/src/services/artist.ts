@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const artistAPI = "/api/artists";
+const artistAPI = `${import.meta.env.VITE_SERVER_URL}/api/artists`;
 
 const getAllArtists = async (): Promise<[Artist]> => {
   const res = await axios.get(artistAPI);

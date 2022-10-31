@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const trackAPI = "/api/tracks";
+const trackAPI = `${import.meta.env.VITE_SERVER_URL}/api/tracks`;
 
 const getAllTracksByArtist = async (artistRef: string) => {
   const res = await axios.get(`${trackAPI}/${artistRef}`);
