@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const mashAPI = "http://localhost:8500/api/mashes";
+const mashAPI = "/api/mashes";
 
 const updateMash = async (
   artist: string,

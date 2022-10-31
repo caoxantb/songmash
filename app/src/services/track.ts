@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const trackAPI = "http://localhost:8500/api/tracks";
+const trackAPI = "/api/tracks";
 
 const getAllTracksByArtist = async (artistRef: string) => {
   const res = await axios.get(`${trackAPI}/${artistRef}`);
