@@ -22,7 +22,6 @@ const errorHandler = (error: express.error, req: express.Request, res: express.R
 };
 
 const fetchSpotify = async (url: string) => {
-  console.log(url)
   const fetchResponse = await fetch(url);
   const html = await fetchResponse.text();
   const parsedHTML = new jsdom.JSDOM(html);
@@ -65,7 +64,6 @@ const scrapeTracksFromSpotify = async (req: express.Request, res: express.Respon
     src: trackSrc,
     points: 1400,
   }
-  console.log(track)
   res.track = track
   next();
 };
