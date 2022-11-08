@@ -13,6 +13,7 @@ interface ArtistGridProps {
 }
 
 const ArtistsGrid = component$(({artists}: ArtistGridProps) => {
+  console.log(artists)
   return (
     <div className="artists-grid">
       {artists.map((artist) => (

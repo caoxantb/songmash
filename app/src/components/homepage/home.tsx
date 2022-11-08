@@ -25,6 +25,7 @@ const Home = component$(() => {
 
   useMount$(async () => {
     store.artists = await artistService.getAllArtists();
+    console.log(store.artists)
   });
 
   return (

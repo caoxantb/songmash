@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@builder.io/qwik': 0.11.1
   '@builder.io/qwik-city': 0.0.112
+  '@netlify/vite-plugin-netlify-edge': 1.1.0
   '@types/eslint': 8.4.6
   '@types/node': latest
   '@types/react': ^18.0.21
@@ -23,8 +24,9 @@ dependencies:
 devDependencies:
   '@builder.io/qwik': 0.11.1
   '@builder.io/qwik-city': 0.0.112
+  '@netlify/vite-plugin-netlify-edge': 1.1.0
   '@types/eslint': 8.4.6
-  '@types/node': 18.11.3
+  '@types/node': 18.11.8
   '@types/react': 18.0.21
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
   '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
@@ -138,6 +140,12 @@ packages:
       - supports-color
     dev: true
 
+  /@netlify/vite-plugin-netlify-edge/1.1.0:
+    resolution: {integrity: sha512-Z99j8uVW1pD/Ye9Bfm9r3wMQsvWkyuh1w/G721L7oKg4aaut6onWIxelu4N/uVM9qFFtZ2u+xWWJEdOcr5iiOA==}
+    dependencies:
+      fast-glob: 3.2.12
+    dev: true
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -212,8 +220,8 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
-  /@types/node/18.11.3:
-    resolution: {integrity: sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==}
+  /@types/node/18.11.8:
+    resolution: {integrity: sha512-uGwPWlE0Hj972KkHtCDVwZ8O39GmyjfMane1Z3GUBGGnkZ2USDq7SxLpVIiIHpweY9DS0QTDH0Nw7RNBsAAZ5A==}
     dev: true
 
   /@types/prop-types/15.7.5:
