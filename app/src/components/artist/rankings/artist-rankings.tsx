@@ -1,7 +1,7 @@
 import {
   component$,
   useStore,
-  useMount$,
+  useClientEffect$,
   useOnWindow,
   useWatch$,
   $,
@@ -9,6 +9,7 @@ import {
 import { ArtistRankingRow, ArtistRankingHead } from "./artist-ranking-row";
 import trackService from "~/services/track";
 import { trackSort } from "~/helpers/track-sorting";
+import ArtistLoadingIcon from "../songmash/artist-loading-icon";
 
 interface ArtistRankingsStore {
   artistAllSongs: Tracks;
@@ -16,6 +17,7 @@ interface ArtistRankingsStore {
     column: "score" | "track" | "release" | "duration";
     direction: "asc" | "desc" | "none";
   };
+  isLoading: boolean;
 }
 
 const ArtistRankings = component$(({ artist }: IArtist) => {
@@ -26,17 +28,19 @@ const ArtistRankings = component$(({ artist }: IArtist) => {
         column: "score",
         direction: "none",
       },
+      isLoading: true,
     },
     { recursive: true }
   );
 
-  useMount$(async () => {
+  useClientEffect$(async () => {
     store.artistAllSongs = await trackService.getAllTracksByArtist(
       artist.nameRef
     );
     store.artistAllSongs = store.artistAllSongs.sort(
       (track1, track2) => (track2.points || 0) - (track1.points || 0)
     );
+    store.isLoading = false;
   });
 
   useWatch$(({ track }) => {
@@ -81,20 +85,26 @@ const ArtistRankings = component$(({ artist }: IArtist) => {
 
   return (
     <div className="artist-rankings">
-      <ArtistRankingHead
-        innerWidth={window.innerWidth}
-        sortHandler={sortHandler}
-        sortBy={store.sortBy}
-      />
-      {store.artistAllSongs.map((track, index) => {
-        return (
-          <ArtistRankingRow
-            track={track}
-            index={index}
+      {!store.isLoading ? (
+        <>
+          <ArtistRankingHead
             innerWidth={window.innerWidth}
+            sortHandler={sortHandler}
+            sortBy={store.sortBy}
           />
-        );
-      })}
+          {store.artistAllSongs.map((track, index) => {
+            return (
+              <ArtistRankingRow
+                track={track}
+                index={index}
+                innerWidth={window.innerWidth}
+              />
+            );
+          })}
+        </>
+      ) : (
+        <ArtistLoadingIcon />
+      )}
     </div>
   );
 });

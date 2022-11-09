@@ -2,7 +2,7 @@ import {
   component$,
   useWatch$,
   useStore,
-  useMount$,
+  useClientEffect$,
   $,
 } from "@builder.io/qwik";
 import ArtistTrackCard from "./artist-track-card";
@@ -29,16 +29,18 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
       trackLeft: { _id: "" },
       trackRight: { _id: "" },
       artistAllSongs: [],
-      isLoading: false,
+      isLoading: true,
     },
     { recursive: true }
   );
 
-  useMount$(async () => {
+
+  useClientEffect$(async () => {
     store.artistAllSongs = await trackService.getAllTracksByArtist(
       artist.nameRef
     );
     [store.indexLeft, store.indexRight] = randomizeSongs(store.artistAllSongs.length)
+    store.isLoading = false
   });
 
   useWatch$(async ({ track }) => {
@@ -56,6 +58,8 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
     event.stopPropagation();
     const target = event.target as any;
     if (target?.localName !== "iframe") {
+      store.isLoading = true;
+
       const [leftPoints, rightPoints] = calcEloRating(
         store.trackLeft.points || 0,
         store.trackRight.points || 0,
@@ -89,12 +93,7 @@ const ArtistSongMash = component$(({ artist }: IArtist) => {
       await mashService.updateMash(artist.nameRef, [store.trackLeft.index || 0, store.trackRight.index || 0], winner)
 
       ;[store.indexLeft, store.indexRight] = randomizeSongs(store.artistAllSongs.length)
-
-      store.isLoading = true;
-
-      setTimeout(() => {
-        store.isLoading = false;
-      }, 1200);
+      store.isLoading = false
     }
   });
 
