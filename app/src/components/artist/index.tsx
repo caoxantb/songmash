@@ -7,10 +7,10 @@ import {
 } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import ArtistStyles from "~/styles/artist.css";
-import ArtistSongMash from "./songmash/artist-songmash";
-import ArtistBio from "./biography/artist-bio";
-import ArtistRankings from "./rankings/artist-rankings";
-import ArtistToggler from "./artist-toggler";
+import ArtistSongMash from "./songmash";
+import ArtistBio from "./biography/bio";
+import ArtistRankings from "./rankings";
+import ArtistToggler from "./navigation";
 import artistService from "~/services/artist";
 
 interface ArtistPageStore {
@@ -56,7 +56,7 @@ const ArtistPage = component$(() => {
         <p className="artist-main-title">{store.artist.name?.toUpperCase()}</p>
       </div>
       <div className="artist-main-section">
-        <ArtistToggler clickHandler={clickHandler} toggle={store.toggle} />
+        {/* <ArtistToggler clickHandler={clickHandler} toggle={store.toggle} /> */}
         {store.toggle === "biography" ? (
           <ArtistBio artist={store.artist} />
         ) : store.toggle === "songmash" ? (

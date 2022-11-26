@@ -1,6 +1,6 @@
 import { component$, QRL } from "@builder.io/qwik";
-import ArtistDurationIcon from "./artist-duration-icon";
-import ArtistSortIcon from "./artist-sort-icon";
+import ArtistDurationIcon from "../../icon/duration";
+import ArtistSortIcon from "../../icon/sort";
 
 interface ArtistRankingProps {
   track: Track;

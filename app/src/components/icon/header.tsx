@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 
-const Icon = component$(() => {
+const HeaderIcon = component$(() => {
   return (
     <span>
       <svg
@@ -29,4 +29,4 @@ const Icon = component$(() => {
   );
 });
 
-export default Icon;
+export default HeaderIcon;

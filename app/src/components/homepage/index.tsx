@@ -5,7 +5,7 @@ import {
   useMount$,
 } from "@builder.io/qwik";
 import HomeStyles from "~/styles/home.css";
-import ArtistsGrid from "./artists-grid";
+import ArtistsGrid from "./artists";
 import Banner from "./banner";
 import artistService from "~/services/artist";
 

@@ -6,10 +6,10 @@ import {
   useWatch$,
   $,
 } from "@builder.io/qwik";
-import { ArtistRankingRow, ArtistRankingHead } from "./artist-ranking-row";
+import { ArtistRankingRow, ArtistRankingHead } from "./row";
 import trackService from "~/services/track";
 import { trackSort } from "~/helpers/track-sorting";
-import ArtistLoadingIcon from "../songmash/artist-loading-icon";
+import ArtistLoadingIcon from '../../icon/loading'
 
 interface ArtistRankingsStore {
   artistAllSongs: Tracks;
