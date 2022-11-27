@@ -56,7 +56,7 @@ const ArtistPage = component$(() => {
         <p className="artist-main-title">{store.artist.name?.toUpperCase()}</p>
       </div>
       <div className="artist-main-section">
-        {/* <ArtistToggler clickHandler={clickHandler} toggle={store.toggle} /> */}
+        <ArtistToggler clickHandler={clickHandler} toggle={store.toggle} />
         {store.toggle === "biography" ? (
           <ArtistBio artist={store.artist} />
         ) : store.toggle === "songmash" ? (
