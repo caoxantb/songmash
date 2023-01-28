@@ -15,3 +15,5 @@
 - For deeper information regarding the applications' functionalities and implementation, you can check this two blog posts I wrote in which I demonstrated the process of building this app:
   - Part I: https://blog.bravebits.co/from-facemash-to-songmash-how-i-take-mark-zuckerbergs-drunken-idea-and-turn-it-into-mine-part-i/
   - Part II: https://blog.bravebits.co/from-facemash-to-songmash-how-i-take-mark-zuckerbergs-drunken-idea-and-turn-it-into-mine-part-ii/
+
+**Hours used:** 95 hours, link to timing breakdown: https://drive.google.com/file/d/1I1pmIYabc2UGjebiI8qkaJfXNAINPFN_/view?usp=sharing
