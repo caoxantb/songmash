@@ -1,6 +1,6 @@
 # Songmash
 
-**Author:** Xuan-An Cao
+**Author:** Xuan-An Cao *(the commit name is either caoxantb or ancx due to my various Github accounts)*
 
 **Address:** https://songmash-app.netlify.app/
 
