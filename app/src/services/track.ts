@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const trackAPI = `${import.meta.env.VITE_SERVER_URL}/api/tracks`;
+const trackAPI = `https://songmash.vercel.app/api/tracks`;
 
 const getAllTracksByArtist = async (artistRef: string) => {
   const res = await fetch(`${trackAPI}/${artistRef}`, {

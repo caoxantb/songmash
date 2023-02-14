@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const artistAPI = `${import.meta.env.VITE_SERVER_URL}/api/artists`;
+const artistAPI = `https://songmash.vercel.app/api/artists`;
 
 // const getAllArtists = async (): Promise<[Artist]> => {
 //   console.log("hehe");

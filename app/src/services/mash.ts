@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const mashAPI = `${import.meta.env.VITE_SERVER_URL}/api/mashes`;
+const mashAPI = `https://songmash.vercel.app/api/mashes`;
 
 const updateMash = async (
   artist: string,
